@@ -9,6 +9,28 @@ fishPool[i] = 0;
 
 valueCounter.forEach(counter => {
 fishPool[counter]++;
-}); //räknar varje värde försig samt summerar dem
+}); //räknar varje värde försig samt summerar dem för att se hur många fiskar det finns i varje värde
 
-console.log (fishPool);
+function increase(fishArray) {
+    const zeroValue = fishArray[0];
+    for (let i = 0; i < 8; i++) {
+        fishArray[i] = fishArray[i + 1];
+    }   //logiken samt kraven för att ändra på värderna
+    fishArray[8] = zeroValue; 
+    fishArray[6] += zeroValue; 
+}
+
+function changeValue(fishArray, interval) {
+    const copy = {fishArray};
+    for (let i = 0; i < interval; i++) {
+        increase(fishArray);
+    }
+
+    return Object.values(copy)
+}
+
+const result = changeValue(fishPool, 80);
+
+console.log(result)
+
+//console.log (result.reduce((a, b) => a + b));
